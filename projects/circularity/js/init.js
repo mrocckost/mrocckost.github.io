@@ -22,6 +22,12 @@ var init = function (window) {
         // TODO 1 : Declare and initialize our variables
         var circle; 
         var circles = []; 
+        var color = prompt('Enter a color:\n red blue or green').toLowerCase();
+        var colors = ['red', 'green', 'blue'];
+        var colorCodes = ['#F00', '#0F0', '#00F'];
+
+        var index = colors.indexOf(color);
+        var colorCode = colorCodes[index];
 
 
         // TODO 2 : Create a function that draws a circle 
