@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A-TACO-lypse</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+             
+            
+            #menu, #take-order {
+                display: flex;
+                flex-direction: row;
+                background-image: url("https://www.desktopbackground.org/p/2014/03/05/726510_this-taco-places-bathroom-wallpapers-is-tacos-mildlyinteresting_1920x1200_h.png");
+                width: fit-content; 
+            }
+
+            #take-order > p {
+                padding-right: 10px;
+            }
+
+            .menu-item {
+                border: 3px solid rgb(25, 26, 44); 
+                width: fit-content; 
+            }
+        
+
+            .menu-item > h4,
+            .menu-item > img {
+                padding: 10px;
+                padding-bottom: 5px;
+            }
+
+            img {
+                width: 250px;
+            }
+
+            h1 {
+                color:rgb(221, 70, 70);
+            }
+            h3 {
+                color:rgb(221, 70, 70);
+            }
+            h4 {
+                 color:white;
+            }
+            p {
+                color: white; 
+            }
+            main, nav {
+                background-color:rgb(25, 26, 44); 
+                width: fit-content; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="all-contents">
+            <nav>
+                <h1>A-TACO-lypse</h1>
+                <div id="take-order">
+                    <p>When you're ready to place your order, click here: </p>
+                    <button>Place Order</button>
+                </div>
+            </nav>
+            <main>
+                <h3>Menu</h3>
+                <div id="menu">
+                    <div id="three-tacos" class="menu-item">
+                        <h4> #1 - Three Tacos</h4>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG-phbs_RqH7HoN_2XLKiTXd0zTOeMGLncug&usqp=CAU">
+                        <h4>6.99</h4>
+                    </div>
+                    <div id="five-tacos" class="menu-item">
+                        <h4>#2 - Five Atomic Tacos</h4>
+                        <img src="https://i2.wp.com/thesuburbansoapbox.com/wp-content/uploads/2021/02/Birria-Tacos-8.jpg">
+                        <h4>9.99</h4>
+                    </div>
+                    <div id="quesadilla" class="menu-item">
+                        <h4>#3 - QuesaKilla</h4>
+                        <img src="https://www.flavcity.com/wp-content/uploads/2021/04/quesadilla.jpg">
+                        <h4>5.99</h4>
+                </div>
+                <div id="street-style-burrito" class="menu-item">
+                    <h4>#4 - Street Fighter Burrito</h4>
+                    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2018%2F04%2Fmassachusetts-sabroso-taqueria-best-burritos-XL-SS0418.jpg">
+                    <h4>7.99</h4>
+            </div>
+            <div id="banana-split-dessert-taco" class="menu-item">
+                <h4>#5 - Banana Split Dessert Taco</h4>
+                <img src="https://brandsitesplatform-res.cloudinary.com/image/fetch/w_1540,c_scale,q_auto:eco,f_auto,fl_lossy,dpr_1.0,e_sharpen:85/https://assets.brandplatform.generalmills.com%2F-%2Fmedia%2FProject%2FGMI%2Foldelpaso%2Foldelpaso-us%2FRecipes%2Fbanana-split-stand-n-stuff-dessert-tacos.jpg%3Fh%3D430%26amp%3Biar%3D0%26amp%3Bw%3D620%26amp%3Brev%3D97e6210c97a74281bbb64394c7f415d3%201540w">
+                <h4>6.99</h4>
+        </div>
+        <div id="chips-and-queso" class="menu-item">
+            <h4>#1.5 - Chips and Queso</h4>
+            <img src="https://www.joyousapron.com/wp-content/uploads/2021/04/Queso-Pic-Sq.jpg">
+            <h4>2.99</h4>
+    </div>
+    <div id="chips-and-guac" class="menu-item">
+        <h4>#2.5 - Chips and Guac</h4>
+        <img src="https://www.twopeasandtheirpod.com/wp-content/uploads/2020/01/Guacamole-2.jpg">
+        <h4>3.99</h4>
+</div>
+ </main>
+        </div>
+        <script>
+            $('button').on('click', orderTotal);
+            var total = 0;
+            function orderTotal () {
+                var orderNumber = prompt('What combo number would you like to order?'); 
+if (orderNumber === '1') {
+    total += 6.99;
+} else if (orderNumber === '2') {
+    total += 9.99;
+} else if (orderNumber === '3') {
+    total += 5.99; 
+} else if (orderNumber === '4') {
+    total += 7.99; 
+} else if (orderNumber === '5') {
+    total += 6.99; 
+} 
+else {
+    alert('Not available for the A-TACO-lypse'); 
+}
+var chipsAnd = prompt('Would you like chips and queso ($2.99) or chips and guac($3.99)? Type in "queso" for chips and queso, "guac" for chips and quac, or "no" if you want to limit your happiness and not get chips. ):'); // NOTE: the value will be stored as a string
+
+if (chipsAnd === 'queso') {
+    total += 2.99;
+} else if (chipsAnd === 'guac') {
+    total += 3.99;
+} else if (chipsAnd === 'no') {
+    total += 0;
+} else {
+    alert('Sorry, the information you entered was not correct');
+}
+
+var drink = prompt('Would you like to add a drink to your order? If so please type in any of these options: Coke, Sprite, Water, Pina Colada, Sweet Tea, Unsweet tea, or "no" if you want to remain thirsty during the A-TACO-lypse.');
+
+if (drink === 'coke', 'sprite', 'water') {
+    total += 1.00;
+} else if (drink === 'pina colada') {
+    total += 2.99;
+} else if (drink === 'sweet tea', 'unsweet tea') {
+    total += 1.50; 
+} else {
+    alert('Sorry, that is not available for the A-TACO-lypse.'); 
+     }
+     alert('The total for your order is ' + total + '. It\'ll be out shortly. Thanks for visiting the A-TACO-lypse, we hope your day is SpecTACOlar!');
+    }
+        </script>
+    </body>
+</html>
