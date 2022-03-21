@@ -19,6 +19,3 @@ setTimeout(function(){ document.getElementById("name_last").innerHTML = user.nam
 setTimeout(function(){ document.getElementById("followers").innerHTML = "Followers: " + user.followers.length;}, 3000);
 setTimeout(function(){ $("#profile_pic").attr("src", user.profile_pic);}, 3000);
 setTimeout(function(){ document.getElementById("Bio").innerHTML = user.Bio;}, 3000);
-
-// comment to be deleted later
-
