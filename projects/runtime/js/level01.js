@@ -23,12 +23,52 @@ var level01 = function (window) {
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(true);
+        game.setDebugMode(false);
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
+        var hitZoneSize = 25;
+        var damageFromObstacle = 10;
+        var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+        sawBladeHitZone.x = 400;
+        sawBladeHitZone.y = 300;
+        game.addGameItem(sawBladeHitZone);    
+        var obstacleImage = draw.bitmap('img/sawblade.png');
+        obstacleImage.x = -25;
+        obstacleImage.y = -25; 
+        sawBladeHitZone.addChild(obstacleImage); 
 
-        
+        function createSawBlade(x,y){
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            sawBladeHitZone.x = x;
+            sawBladeHitZone.y = y;
+            game.addGameItem(sawBladeHitZone);
+            var obstacleImage = draw.bitmap('img/sawblade.png');
+            sawBladeHitZone.addChild(obstacleImage);
+            obstacleImage.x = -25;
+            obstacleImage.y= -25;
+        }
+        createSawBlade(200,300);
+        createSawBlade(900,210);
+        createSawBlade(700,265);
+
+        function createAlien(x,y) {
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var alienHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            alienHitZone.x = x;
+            alienHitZone.y = y;
+            game.addGameItem(alienHitZone);
+            var obstacleImage2 = draw.bitmap('img/alien(1)(1).png');
+            alienHitZone.addChild(obstacleImage2);
+            obstacleImage2.x = -10;
+            obstacleImage2.y= -50;
+        }
+        createAlien(1500, 275);
+        createAlien(1200, 210);
+
         
         
         // DO NOT EDIT CODE BELOW HERE

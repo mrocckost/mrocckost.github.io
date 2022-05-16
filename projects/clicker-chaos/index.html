@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1 id="texth">Tree of Life Clicker</h1>
+    <!-- <div class="top-box"> -->
+    <div class="main-box">
+        <div class="upgrade-box" id="upgradeslol">
+            <h2 id="textu">Upgrades</h2>
+            <div class="upgrade" id="upgrade1">
+                <p>Happiness is Always a Bonus!</p>
+                <p id="happiness-count">Owned: 0</p>
+                <p id="happiness-cost">Cost:150</p>
+                <button class="button" id="purchase-happiness">Purchase Happiness!</button>
+            </div>
+            <div class="upgrade" id="upgrade2">
+                <p>Seems You Need to Remember...</p>
+                <p id="memory-count">Owned: 0</p>
+                <p id="memory-cost">Cost: 200</p>
+                <button class="button" id="purchase-memory">Get Your Memories Back!</button>
+            </div>
+            <div class="upgrade" id="upgrade3">
+                <p>Souls Help Your Tree Grow.</p>
+                <p id="soul-count">Owned: 0</p>
+                <p id="soul-cost">Cost: 250</p>
+                <button class="button" id="purchase-soul">Souls are very important!</button>
+            </div>
+            <div class="upgrade" id="upgrade4">
+                <p>Energize yourself for your journey.</p>
+                <p id="energy-count">Owned: 0</p>
+                <p id="energy-cost">Cost: 300</p>
+                <button class="button" id="purchase-energy">Are you tired? Buy Energy!</button>
+            </div>
+            <div class="upgrade" id="upgrade5">
+                <p>SURPRISE!!!!</p>
+                <p id="surprise-count">Owned: 0</p>
+                <p id="surprise-cost">Cost: 10000</p>
+                <button class="button" id="purchase-surprise">Buy a Surprise Item!</button>
+            </div>
+        </div>
+        <div class="clicker-box">
+            <img id="clicker-image"
+                src="https://cdn.shopify.com/s/files/1/0406/2144/1176/files/TREE_480x480.jpg?v=1613588848">
+            <p id="nectar-amount">Nectar Collected: 0</p>
+            <p id='nectarPerSecond'>Nectar per second: 0 </p>
+        </div>
+
+        <div class="autoclicker-box" id="clicker1">
+            <h2 id="textc">Autoclickers</h2>
+            <div class="autoclicker" id="autoclicker1">
+                <p>Immortality Token Upgrades!</p>
+                <p id="tokens-count">Owned: 0</p>
+                <p id="tokens-cost">Cost: 75</p>
+                <button class="button" id="purchase-tokens">Buy Tokens!</button>
+            </div>
+            <div class="autoclicker" id="autoclicker2">
+                <p>Wash Away Your Troubles!</p>
+                <p id="wash-count">Owned: 0</p>
+                <p id="wash-cost">Cost: 250</p>
+                <button class="button" id="purchase-wash">Buy Cleanser!</button>
+            </div>
+            <div class="autoclicker" id="autoclicker3">
+                <p>Ultimate Elixir of Life!</p>
+                <p id="elixir-count">Owned: 0</p>
+                <p id="elixir-cost">Cost: 425</p>
+                <button class="button" id="purchase-elixir">Buy the Ultimate Elixir!</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- <div class="credits">
+
+            </div> -->
+    <!-- </div> -->
+    <script>
+        // Variables
+        var nectar = 1000;
+        var nectarPerSecond = 0;
+        var happiness = {
+            rps: 0.5,
+            numberOwned: 0,
+            basePrice: 75,
+        };
+        var memory = {
+            amp: 1.25,
+            numberOwned: 0,
+            basePrice: 200,
+        }
+        var soul = {
+            rps: 1.5,
+            numberOwned: 0,
+            basePrice: 250,
+        };
+        var energy = {
+            rps: 1.75,
+            numberOwned: 0,
+            basePrice: 425,
+        };
+        var tokens = {
+            amp: 1.50,
+            numberOwned: 0,
+            basePrice: 500,
+        };
+        var wash = {
+            amp: 1.75,
+            numberOwned: 0,
+            basePrice: 300,
+        };
+        var elixir = {
+            amp: 2,
+            numberOwned: 0,
+            basePrice: 425,
+        };
+        var surprise = {
+            amp: 4.75,
+            numberOwned: 0,
+            basePrice: 10000,
+        };
+
+        // Core Functionality
+        $("#clicker-image").on("click", downloadNectar);
+        setInterval(addAutoRAM, 1000);
+        // Event/Click Listeners
+        $("#purchase-happiness").on('click', purchaseHappiness);
+        $("#purchase-memory").on('click', purchaseMemory);
+        $("#purchase-soul").on('click', purchaseSoul);
+        $("#purchase-energy").on('click', purchaseEnergy);
+        $("#purchase-tokens").on('click', purchaseTokens);
+        $("#purchase-wash").on('click', purchaseWash);
+        $("#purchase-elixir").on('click', purchaseElixir);
+        $("#purchase-surprise").on('click', purchaseSurprise);
+
+
+
+        // Functions
+        function downloadNectar() {
+            nectar++;
+            $("#nectar-amount").text("Nectar: " + nectar + " Life Points");
+        }
+
+        function purchaseHappiness() {
+            cost = Math.ceil(happiness.basePrice * Math.pow(1.1, happiness.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + happiness.rps;
+                happiness.numberOwned = happiness.numberOwned + 1;
+                alert('Happiness Really is the Key to Life! You Got This, Keep Clicking!');
+                $("#happiness-count").text("Owned: " + happiness.numberOwned);
+                $("#happiness-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(happiness.basePrice * Math.pow(3, happiness.numberOwned));
+                $('#happiness-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseMemory() {
+            cost = Math.ceil(memory.basePrice * Math.pow(1.1, memory.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + memory.rps;
+                memory.numberOwned = memory.numberOwned + 1;
+                alert('You got some of your memories back! How do you feel? Keep Clicking!');
+                $("#memory-count").text("Owned: " + memory.numberOwned);
+                $("#memory-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(memory.basePrice * Math.pow(3, memory.numberOwned));
+                $('#memory-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseSoul() {
+            cost = Math.ceil(soul.basePrice * Math.pow(1.1, soul.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + soul.rps;
+                soul.numberOwned = soul.numberOwned + 1;
+                alert('You hae gained more souls! Keep Clicking!');
+                $("#soul-count").text("Owned: " + soul.numberOwned);
+                $("#soul-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(soul.basePrice * Math.pow(3, soul.numberOwned));
+                $('#soul-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseEnergy() {
+            cost = Math.ceil(energy.basePrice * Math.pow(1.1, energy.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + energy.rps;
+                energy.numberOwned = energy.numberOwned + 1;
+                alert('You feel energized for your journey! Keep Clicking!');
+                $("#energy-count").text("Owned: " + energy.numberOwned);
+                $("#energy-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(energy.basePrice * Math.pow(3, energy.numberOwned));
+                $('#energy-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseTokens() {
+            cost = Math.ceil(tokens.basePrice * Math.pow(1.1, tokens.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + tokens.rps;
+                tokens.numberOwned = tokens.numberOwned + 1;
+                alert('I heard it is a good idea to enter a new chapter whilst clean. Keep Clicking!');
+                $("#tokens-count").text("Owned: " + tokens.numberOwned);
+                $("#tokens-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(tokens.basePrice * Math.pow(3, tokens.numberOwned));
+                $('#tokens-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseWash() {
+            cost = Math.ceil(wash.basePrice * Math.pow(1.1, wash.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond + wash.rps;
+                wash.numberOwned = wash.numberOwned + 1;
+                alert('You feel energized for your journey! Keep Clicking!');
+                $("#wash-count").text("Owned: " + wash.numberOwned);
+                $("#wash-cost").text("Cost: " + cost);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                $('#nectar-amount').text("Nectar: " + nectar);
+                var newCost = Math.ceil(wash.basePrice * Math.pow(3, wash.numberOwned));
+                $('#wash-cost').text("Cost: " + newCost);
+            }
+        }
+        function purchaseElixir() {
+            var cost = Math.ceil(elixir.basePrice * Math.pow(3, elixir.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectarPerSecond = nectarPerSecond += elixir.rps;
+                elixir.numberOwned++;
+                alert('Drinking This Will Bring You Closer to Immortality!');
+                $('#elixir-count').text('Owned: ' + elixir.numberOwned);
+                $('#elixir-cost').text('Cost: ' + elixir.basePrice);
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+
+                var newCost = Math.ceil(elixir.basePrice * Math.pow(3, elixir.numberOwned));
+                $('#elixir-cost').text("Cost: " + newCost);
+
+            }
+        }
+        function purchaseSurprise() {
+            var cost = Math.ceil(surprise.basePrice * Math.pow(3, surprise.numberOwned));
+            if (nectar >= cost) {
+                nectar = nectar - cost;
+                nectar = nectar * 0;
+                alert('Buy a Surprise! Take the risk....You never know!');
+                nectarPerSecond = 0;
+                $('#nectarPerSecond').text("Nectar per second: " + nectarPerSecond);
+                surprise.numberOwned = surprise.numberOwned + 1;
+                $('#surprise-count').text("Owned: " + surprise.numberOwned);
+
+                var newCost = Math.ceil(surprise.basePrice * Math.pow(3, surprise.numberOwned));
+                $('#surprise-cost').text("Cost: " + newCost);
+            }
+        }
+        function addAutoRAM() {
+            /*
+                Write a line of code that increases the ram variable by the value stored in the ramPerSecond variable
+                
+                If you chose a number different than 1000 above for your setInterval timer, you'll have to divide the ramPerSecond value before adding it to the ram.
+                For example, if you chose 250, you'll update the ram variable by adding one fourth of the ramPerSecond value.
+            */
+            nectar = nectar + nectarPerSecond;
+            // update the text that displays the ram available
+            $("#nectar-amount").text("Nectar: " + Math.floor(nectar) + " Life Points");
+        }
+
+        /* All code above here */
+    </script>
+</body>
+
+</html>
